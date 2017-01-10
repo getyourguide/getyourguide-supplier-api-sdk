@@ -1,0 +1,21 @@
+{
+	"autoload": {
+		"classmap": [".", "../gyg/supplier-api/"]
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/getyourguide/hhvm-h2tp-resources"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/getyourguide/thrift-lib"
+		}
+	],
+	"require": {
+		"gyg/thrift-lib": "1.0.1"
+	}
+}
+
+
+
