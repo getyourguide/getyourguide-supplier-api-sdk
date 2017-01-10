@@ -3,14 +3,11 @@
 namespace Demo;
 
 use Exception;
+use Gyg\SupplierApiSdk\NotificationClient;
+use Gyg\SupplierApiSdk\TestClient;
 use Gyg\Thrift\Service\SupplierApi\FunctionToTest;
-use Gyg\Thrift\Service\SupplierApi\NotificationServiceClient;
-use Gyg\Thrift\Service\SupplierApi\SupplierApiClient;
-use Gyg\Thrift\Service\SupplierApi\SupplierApiTestClient;
 use Gyg\Thrift\Service\SupplierApi\TestDataOverride;
-use TBinaryProtocol;
-use TBufferedTransport;
-use THttpClient;
+
 
 //composer autoloading
 require __DIR__.'/vendor/autoload.php';
@@ -20,13 +17,10 @@ require __DIR__.'/vendor/autoload.php';
  */
 printHeader('Calling the local (your) server for test purposes...');
 try {
-	$httpClient = new THttpClient('localhost', 8080, '/','http', 'error_log');
-	$transport = new TBufferedTransport($httpClient, 1024, 1024);
-	$protocol = new TBinaryProtocol($transport);
-	$client = new SupplierApiClient($protocol);
+
+	$client = new DemoSupplierApiClient();
 	$availabilities = $client->getAvailabilities('Demo Product 1', '2016-01-01T00:00:00', '2016-12-31T23:59:59');
 	printResponse($availabilities);
-	$transport->close();
 } catch (Exception $e) {
 	printException($e);
 }
@@ -36,19 +30,13 @@ try {
  */
 printHeader('Calling GetYourGuide to request a test call...');
 try {
-	$httpClient = new THttpClient('supplier-api-getyourguide-com.partner.gygtest.com', 443, '/1/test/','https', 'error_log');
 	$user = 'test';
 	$password = 'password';
-	$headers['Authorization'] = 'Basic ' . base64_encode($user . ':' . $password);
-	$httpClient->setCustomHeaders($headers);
-	$transport = new TBufferedTransport($httpClient, 1024, 1024);
-	$protocol = new TBinaryProtocol($transport);
-	$client = new SupplierApiTestClient($protocol);
+	$client = new TestClient($user, $password);
 	$testDataOverride = new TestDataOverride();
 	$testDataOverride->productId  = '123';
 	$testResult = $client->testFunction(FunctionToTest::GET_AVAILABILITIES, $testDataOverride);
 	printResponse($testResult);
-	$transport->close();
 } catch (Exception $e) {
 	printException($e);
 }
@@ -60,20 +48,13 @@ try {
  */
 printHeader('Calling GetYourGuide to notify about new availability...');
 try {
-	$httpClient = new THttpClient('supplier-api-getyourguide-com.partner.gygtest.com', 443, '/1/','https', 'error_log');
 	$user = 'test';
 	$password = 'password';
-	$headers['Authorization'] = 'Basic ' . base64_encode($user . ':' . $password);
-	$httpClient->setCustomHeaders($headers);
-	$transport = new TBufferedTransport($httpClient, 1024, 1024);
-	$protocol = new TBinaryProtocol($transport);
-	$client = new NotificationServiceClient($protocol);
+	$client = new NotificationClient($user, $password);
 	$client->notifyAvailabilityUpdate('Demo Product 1', '2016-01-01T00:00:00', '2016-12-31T23:59:59');
-	$transport->close();
 } catch (Exception $e) {
 	printException($e);
 }
-
 
 //helper functions
 function printHeader($text) {

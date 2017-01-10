@@ -1,6 +1,6 @@
 {
 	"autoload": {
-		"classmap": [".", "../gyg/supplier-api/"]
+		"classmap": [".", "../gyg/SupplierApiSdk/"]
 	},
 	"repositories": [
 		{

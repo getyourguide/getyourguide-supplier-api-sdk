@@ -1,17 +1,15 @@
 <?php
 
-namespace Gyg\SupplierApiSdk;
+namespace Demo;
 
-
-use Gyg\Thrift\Service\SupplierApi\BookingCancelation;
-use Gyg\Thrift\Service\SupplierApi\BookingRequest;
-use Gyg\Thrift\Service\SupplierApi\ReservationRequest;
 use Gyg\Thrift\Service\SupplierApi\SupplierApiIf;
+use Gyg\Thrift\Service\SupplierApi\SupplierApiClient;
 use TBinaryProtocol;
 use TBufferedTransport;
 use THttpClient;
 
-class TestClient implements SucnpplierApiIf
+
+class DemoSupplierApiClient implements SupplierApiIf
 {
 	private $client;
 
