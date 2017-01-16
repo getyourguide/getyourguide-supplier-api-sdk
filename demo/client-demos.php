@@ -9,7 +9,7 @@ use Gyg\Thrift\Service\SupplierApi\FunctionToTest;
 use Gyg\Thrift\Service\SupplierApi\TestDataOverride;
 
 //composer autoloading
-require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 /**
  * If you want to test your own system locally you can do something like that:
