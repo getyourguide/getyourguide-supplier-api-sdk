@@ -1,6 +1,9 @@
 {
+	"name": "gyg/getyourguide-supplier-api",
+	"description": "GetYourGuide Supplier API SDK",
+	"license": "Apache-2.0",
 	"autoload": {
-		"classmap": [".", "../gyg/SupplierApiSdk/"]
+		"classmap": ["demo/", "gyg/SupplierApiSdk/"]
 	},
 	"repositories": [
 		{
@@ -16,6 +19,3 @@
 		"gyg/thrift-lib": "1.0.1"
 	}
 }
-
-
-

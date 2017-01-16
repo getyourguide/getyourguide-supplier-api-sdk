@@ -15,7 +15,7 @@ class NotificationClient implements NotificationServiceIf
 	public function __construct(
 		$user,
 		$password,
-		$host = 'supplier-api-getyourguide-com.partner.gygtest.com',
+		$host = 'supplier-api.getyourguide.com',
 		$port = 443,
 		$path = '/1/',
 		$protocol = 'https'

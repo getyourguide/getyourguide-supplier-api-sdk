@@ -1,6 +1,6 @@
 # Package Managers
 vendor/
-demo/composer.lock
+composer.lock
 
 # IDE Related
 .idea/

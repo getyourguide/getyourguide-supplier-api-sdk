@@ -7,7 +7,7 @@
 
 ## Installation
 If you are using composer (recommended) you can simply run ``composer install`` from 
-within this directory. This will fetch the dependencies and generate the autoload files. 
+the root of this project. This will fetch the dependencies and generate the autoload files. 
 
 However, using composer is not strictly required. You can also clone the needed repositories 
 (dependencies) manually and autoload the files your preferred way 
