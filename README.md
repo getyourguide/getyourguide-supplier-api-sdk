@@ -8,6 +8,7 @@ the example available in the demo folder.
 
 License
 =======
+Copyright 2017 GetYourGuide
 
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements. See the NOTICE file
