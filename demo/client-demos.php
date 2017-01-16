@@ -8,7 +8,6 @@ use Gyg\SupplierApiSdk\TestClient;
 use Gyg\Thrift\Service\SupplierApi\FunctionToTest;
 use Gyg\Thrift\Service\SupplierApi\TestDataOverride;
 
-
 //composer autoloading
 require __DIR__.'/vendor/autoload.php';
 
@@ -34,7 +33,7 @@ try {
 	$password = 'password';
 	$client = new TestClient($user, $password);
 	$testDataOverride = new TestDataOverride();
-	$testDataOverride->productId  = '123';
+	$testDataOverride->productId = '123';
 	$testResult = $client->testFunction(FunctionToTest::GET_AVAILABILITIES, $testDataOverride);
 	printResponse($testResult);
 } catch (Exception $e) {
@@ -57,18 +56,23 @@ try {
 }
 
 //helper functions
-function printHeader($text) {
+function printHeader($text)
+{
 	$starCount = strlen($text) + 4;
-	echo str_repeat('*', $starCount) . PHP_EOL;
-	echo '* ' . $text . ' *' . PHP_EOL;
-	echo str_repeat('*', $starCount) . PHP_EOL;
+	echo str_repeat('*', $starCount).PHP_EOL;
+	echo '* '.$text.' *'.PHP_EOL;
+	echo str_repeat('*', $starCount).PHP_EOL;
 }
-function printException($e) {
-	echo 'Something exceptional happened: '  . PHP_EOL . get_class($e) . PHP_EOL;
+
+function printException($e)
+{
+	echo 'Something exceptional happened: '.PHP_EOL.get_class($e).PHP_EOL;
 	echo PHP_EOL;
 }
-function printResponse($response) {
-	echo 'Result: ' . PHP_EOL;
+
+function printResponse($response)
+{
+	echo 'Result: '.PHP_EOL;
 	var_dump($response);
 	echo PHP_EOL;
 }

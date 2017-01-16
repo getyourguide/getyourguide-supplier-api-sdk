@@ -8,7 +8,6 @@ use TBinaryProtocol;
 use TBufferedTransport;
 use THttpClient;
 
-
 class DemoSupplierApiClient implements SupplierApiIf
 {
 	private $client;
@@ -20,7 +19,6 @@ class DemoSupplierApiClient implements SupplierApiIf
 		$protocol = new TBinaryProtocol($transport);
 		$this->client = new SupplierApiClient($protocol);
 	}
-
 
 	public function book($bookingRequest)
 	{

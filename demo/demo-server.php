@@ -2,10 +2,9 @@
 
 namespace Demo;
 
-
-//composer autoloading
 use Gyg\SupplierApiSdk\Server;
 
+//composer autoloading
 require __DIR__.'/vendor/autoload.php';
 
 $handler = new DemoHandlerService();

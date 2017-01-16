@@ -2,7 +2,6 @@
 
 namespace Gyg\SupplierApiSdk;
 
-
 use Gyg\Thrift\Service\SupplierApi\SupplierApiIf;
 use Gyg\Thrift\Service\SupplierApi\SupplierApiProcessor;
 use TBinaryProtocol;
