@@ -16,6 +16,6 @@
 		}
 	],
 	"require": {
-		"gyg/thrift-lib": "1.0.1"
+		"gyg/thrift-lib": "1.0.2"
 	}
 }
