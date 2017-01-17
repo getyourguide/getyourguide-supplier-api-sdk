@@ -32,5 +32,5 @@ Acknowledgments
 
 The supplier-api files are auto-generated using FBThrift available at
 
-  https://github.com/facebook/fbthrift
+  https://github.com/getyourguide/fbthrift
   
