@@ -19,6 +19,7 @@ final class Category {
   const EU_CITIZEN = 6;
   const MILITARY = 7;
   const COLLECTIVE = 8;
+  const GROUP = 9;
   static public $__names = array(
     0 => 'ADULT',
     1 => 'CHILD',
@@ -29,6 +30,7 @@ final class Category {
     6 => 'EU_CITIZEN',
     7 => 'MILITARY',
     8 => 'COLLECTIVE',
+    9 => 'GROUP',
   );
   static public $__values = array(
     'ADULT' => 0,
@@ -40,6 +42,7 @@ final class Category {
     'EU_CITIZEN' => 6,
     'MILITARY' => 7,
     'COLLECTIVE' => 8,
+    'GROUP' => 9,
   );
 }
 
@@ -125,14 +128,20 @@ class BookingItem implements \IThriftStruct {
       'var' => 'count',
       'type' => \TType::I32,
       ),
+    3 => array(
+      'var' => 'paxCount',
+      'type' => \TType::I32,
+      ),
     );
   public static $_TFIELDMAP = array(
     'category' => 1,
     'count' => 2,
+    'paxCount' => 3,
   );
-  const STRUCTURAL_ID = 880939940359536746;
+  const STRUCTURAL_ID = 6584296536101459663;
   public $category = null;
   public $count = null;
+  public $paxCount = null;
 
   public function __construct($vals=null) {
     if (is_array($vals)) {
@@ -141,6 +150,9 @@ class BookingItem implements \IThriftStruct {
       }
       if (isset($vals['count'])) {
         $this->count = $vals['count'];
+      }
+      if (isset($vals['paxCount'])) {
+        $this->paxCount = $vals['paxCount'];
       }
     } else if ($vals) {
       throw new \TProtocolException(
@@ -192,6 +204,13 @@ class BookingItem implements \IThriftStruct {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 3:
+          if ($ftype == \TType::I32) {
+            $xfer += $input->readI32($this->paxCount);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -213,6 +232,11 @@ class BookingItem implements \IThriftStruct {
     if ($this->count !== null) {
       $xfer += $output->writeFieldBegin('count', \TType::I32, 2);
       $xfer += $output->writeI32($this->count);
+      $xfer += $output->writeFieldEnd();
+    }
+    if (isset($this->paxCount) && $this->paxCount !== null) {
+      $xfer += $output->writeFieldBegin('paxCount', \TType::I32, 3);
+      $xfer += $output->writeI32($this->paxCount);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -830,7 +854,7 @@ class BookingRequest implements \IThriftStruct {
     'travelerHotel' => 8,
     'comment' => 9,
   );
-  const STRUCTURAL_ID = 3521118967154303078;
+  const STRUCTURAL_ID = 7592687514392648380;
   public $productId = null;
   public $dateTime = null;
   public $reservationReference = null;
@@ -1047,7 +1071,7 @@ class BookingRequest implements \IThriftStruct {
       }
       $xfer += $output->writeFieldEnd();
     }
-    if ($this->language !== null) {
+    if (isset($this->language) && $this->language !== null) {
       $xfer += $output->writeFieldBegin('language', \TType::STRING, 6);
       $xfer += $output->writeString($this->language);
       $xfer += $output->writeFieldEnd();
@@ -1397,6 +1421,113 @@ class BookingCancelation implements \IThriftStruct {
 
 }
 
+class OpeningTime implements \IThriftStruct {
+  static $_TSPEC = array(
+    1 => array(
+      'var' => 'fromTime',
+      'type' => \TType::STRING,
+      ),
+    2 => array(
+      'var' => 'toTime',
+      'type' => \TType::STRING,
+      ),
+    );
+  public static $_TFIELDMAP = array(
+    'fromTime' => 1,
+    'toTime' => 2,
+  );
+  const STRUCTURAL_ID = 4848215076160671747;
+  public $fromTime = null;
+  public $toTime = null;
+
+  public function __construct($vals=null) {
+    if (is_array($vals)) {
+      if (isset($vals['fromTime'])) {
+        $this->fromTime = $vals['fromTime'];
+      }
+      if (isset($vals['toTime'])) {
+        $this->toTime = $vals['toTime'];
+      }
+    } else if ($vals) {
+      throw new \TProtocolException(
+        'OpeningTime constructor must be passed array or null'
+      );
+    }
+  }
+
+  public function getName() {
+    return 'OpeningTime';
+  }
+
+  public static function __set_state($vals) {
+    return new OpeningTime($vals);
+  }
+
+  public function read(\TProtocol $input)
+  {
+    $xfer = 0;
+    $fname = null;
+    $ftype = 0;
+    $fid = 0;
+    $xfer += $input->readStructBegin($fname);
+    while (true)
+    {
+      $xfer += $input->readFieldBegin($fname, $ftype, $fid);
+      if ($ftype == \TType::STOP) {
+        break;
+      }
+      if (!$fid && $fname !== null) {
+        if (isset(self::$_TFIELDMAP[$fname])) {
+          $fid = self::$_TFIELDMAP[$fname];
+          $ftype = self::$_TSPEC[$fid]['type'];
+        }
+      }
+      switch ($fid)
+      {
+        case 1:
+          if ($ftype == \TType::STRING) {
+            $xfer += $input->readString($this->fromTime);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        case 2:
+          if ($ftype == \TType::STRING) {
+            $xfer += $input->readString($this->toTime);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
+        default:
+          $xfer += $input->skip($ftype);
+          break;
+      }
+      $xfer += $input->readFieldEnd();
+    }
+    $xfer += $input->readStructEnd();
+    return $xfer;
+  }
+
+  public function write(\TProtocol $output) {
+    $xfer = 0;
+    $xfer += $output->writeStructBegin('OpeningTime');
+    if ($this->fromTime !== null) {
+      $xfer += $output->writeFieldBegin('fromTime', \TType::STRING, 1);
+      $xfer += $output->writeString($this->fromTime);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->toTime !== null) {
+      $xfer += $output->writeFieldBegin('toTime', \TType::STRING, 2);
+      $xfer += $output->writeString($this->toTime);
+      $xfer += $output->writeFieldEnd();
+    }
+    $xfer += $output->writeFieldStop();
+    $xfer += $output->writeStructEnd();
+    return $xfer;
+  }
+
+}
+
 class Availability implements \IThriftStruct {
   static $_TSPEC = array(
     1 => array(
@@ -1411,16 +1542,28 @@ class Availability implements \IThriftStruct {
       'var' => 'vacancies',
       'type' => \TType::I32,
       ),
+    4 => array(
+      'var' => 'openingTimes',
+      'type' => \TType::LST,
+      'etype' => \TType::STRUCT,
+      'elem' => array(
+        'type' => \TType::STRUCT,
+        'class' => 'OpeningTime',
+        ),
+        'format' => 'array',
+      ),
     );
   public static $_TFIELDMAP = array(
     'productId' => 1,
     'dateTime' => 2,
     'vacancies' => 3,
+    'openingTimes' => 4,
   );
-  const STRUCTURAL_ID = 4939607559050396849;
+  const STRUCTURAL_ID = 4557862850770080283;
   public $productId = null;
   public $dateTime = null;
   public $vacancies = null;
+  public $openingTimes = null;
 
   public function __construct($vals=null) {
     if (is_array($vals)) {
@@ -1432,6 +1575,9 @@ class Availability implements \IThriftStruct {
       }
       if (isset($vals['vacancies'])) {
         $this->vacancies = $vals['vacancies'];
+      }
+      if (isset($vals['openingTimes'])) {
+        $this->openingTimes = $vals['openingTimes'];
       }
     } else if ($vals) {
       throw new \TProtocolException(
@@ -1490,6 +1636,27 @@ class Availability implements \IThriftStruct {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 4:
+          if ($ftype == \TType::LST) {
+            $this->openingTimes = array();
+            $_size28 = 0;
+            $_etype31 = 0;
+            $xfer += $input->readListBegin($_etype31, $_size28);
+            for ($_i32 = 0; $_size28 === null || $_i32 < $_size28; ++$_i32)
+            {
+              if ($_size28 === null && !$input->readListHasNext()) {
+                break;
+              }
+              $elem33 = null;
+              $elem33 = new OpeningTime();
+              $xfer += $elem33->read($input);
+              $this->openingTimes []= $elem33;
+            }
+            $xfer += $input->readListEnd();
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -1516,6 +1683,23 @@ class Availability implements \IThriftStruct {
     if ($this->vacancies !== null) {
       $xfer += $output->writeFieldBegin('vacancies', \TType::I32, 3);
       $xfer += $output->writeI32($this->vacancies);
+      $xfer += $output->writeFieldEnd();
+    }
+    if (isset($this->openingTimes) && $this->openingTimes !== null) {
+      if (!is_array($this->openingTimes) && !(($this->openingTimes instanceof \Iterator || $this->openingTimes instanceof \IteratorAggregate) && $this->openingTimes instanceof \Countable)) {
+        throw new \TProtocolException('Bad type in structure.', \TProtocolException::INVALID_DATA);
+      }
+      $xfer += $output->writeFieldBegin('openingTimes', \TType::LST, 4);
+      {
+        $output->writeListBegin(\TType::STRUCT, count($this->openingTimes));
+        {
+          foreach ($this->openingTimes as $iter34)
+          {
+            $xfer += $iter34->write($output);
+          }
+        }
+        $output->writeListEnd();
+      }
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
@@ -1588,18 +1772,18 @@ class AvailabilityResponse implements \IThriftStruct {
         case 1:
           if ($ftype == \TType::LST) {
             $this->availabilities = array();
-            $_size28 = 0;
-            $_etype31 = 0;
-            $xfer += $input->readListBegin($_etype31, $_size28);
-            for ($_i32 = 0; $_size28 === null || $_i32 < $_size28; ++$_i32)
+            $_size35 = 0;
+            $_etype38 = 0;
+            $xfer += $input->readListBegin($_etype38, $_size35);
+            for ($_i39 = 0; $_size35 === null || $_i39 < $_size35; ++$_i39)
             {
-              if ($_size28 === null && !$input->readListHasNext()) {
+              if ($_size35 === null && !$input->readListHasNext()) {
                 break;
               }
-              $elem33 = null;
-              $elem33 = new Availability();
-              $xfer += $elem33->read($input);
-              $this->availabilities []= $elem33;
+              $elem40 = null;
+              $elem40 = new Availability();
+              $xfer += $elem40->read($input);
+              $this->availabilities []= $elem40;
             }
             $xfer += $input->readListEnd();
           } else {
@@ -1627,9 +1811,9 @@ class AvailabilityResponse implements \IThriftStruct {
       {
         $output->writeListBegin(\TType::STRUCT, count($this->availabilities));
         {
-          foreach ($this->availabilities as $iter34)
+          foreach ($this->availabilities as $iter41)
           {
-            $xfer += $iter34->write($output);
+            $xfer += $iter41->write($output);
           }
         }
         $output->writeListEnd();
