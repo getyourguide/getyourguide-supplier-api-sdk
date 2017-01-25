@@ -1,5 +1,5 @@
 {
-	"name": "gyg/getyourguide-supplier-sdk",
+	"name": "gyg/getyourguide-supplier-api-sdk",
 	"description": "GetYourGuide Supplier API SDK",
 	"license": "Apache-2.0",
 	"autoload": {
