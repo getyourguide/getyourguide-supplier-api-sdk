@@ -31,7 +31,7 @@ as our SDK is not published on packagist:
     }
 ]
 ```
-after that of add our package to your require section:
+after that add our package to your require section:
 ```json
 "require": {
     "gyg/getyourguide-supplier-api-sdk": "1.0.0"
