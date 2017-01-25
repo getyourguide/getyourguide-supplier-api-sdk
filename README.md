@@ -6,6 +6,44 @@ the GetYourGuide live reservation services.
 Please find more about using this SDK by reading the README and following 
 the example available in the demo folder. 
 
+
+## Requirements
+- PHP 5.5 or later
+- GIT
+- Optional, composer (https://getcomposer.org/)
+
+## Installation
+If you are using composer (recommended), please add the following sources to your composer.json file, this is needed
+as our api is not published on packagist:
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/getyourguide/getyourguide-supplier-api-sdk"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/getyourguide/thrift-lib"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/getyourguide/hhvm-h2tp-resources"
+    }
+]
+```
+after that of add our package to your require section:
+```json
+"require": {
+    "gyg/getyourguide-supplier-api-sdk": "1.0.0"
+}
+```
+and now, you can simply run ``composer install`` from the root of this project. This will fetch the dependencies and generate the autoload files.
+
+However, using composer is not strictly required. You can also clone the needed repositories 
+(dependencies) manually and autoload the files your preferred way 
+(as well as replace the autoloader require statement in the demo files).
+
+
 License
 =======
 Copyright 2017 GetYourGuide
