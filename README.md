@@ -40,8 +40,7 @@ after that of add our package to your require section:
 and now, you can simply run ``composer install`` from the root of this project. This will fetch the dependencies and generate the autoload files.
 
 However, using composer is not strictly required. You can also clone the needed repositories 
-(dependencies) manually and autoload the files your preferred way 
-(as well as replace the autoloader require statement in the demo files).
+(dependencies) manually and autoload the files your preferred way.
 
 
 License
