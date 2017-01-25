@@ -14,7 +14,7 @@ the example available in the demo folder.
 
 ## Installation
 If you are using composer (recommended), please add the following sources to your composer.json file, this is needed
-as our api is not published on packagist:
+as our sdk is not published on packagist:
 ```json
 "repositories": [
     {
