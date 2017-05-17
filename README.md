@@ -34,7 +34,7 @@ as our SDK is not published on packagist:
 after that add our package to your require section:
 ```json
 "require": {
-    "gyg/getyourguide-supplier-api-sdk": "1.0.0"
+    "gyg/getyourguide-supplier-api-sdk": "1.0.*"
 }
 ```
 and now, you can simply run ``composer install`` from the root of this project. This will fetch the dependencies and generate the autoload files.
